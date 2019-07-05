@@ -1,0 +1,122 @@
+#mainPage {
+  background-image: url('/img/cool-background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* height: 100vh; */
+}
+
+#welcomeSlogan {
+  margin-top: 45px;
+}
+
+#appLogo {
+  width: 35vw;
+  height: 35vw;
+}
+
+.border-3 {
+  border-width:5px !important;
+}
+
+#card-daily-transactions, #card-statistics, #card-calculator {
+  font-size: 20px;
+}
+
+.about-card {
+  padding: 40px;
+}
+
+#transactions-table {
+  display: flex;
+}
+
+#transactions-header {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+}
+
+#daily_transactions {
+  width: 80%;
+}
+
+#manage_accounts {
+  width: 70%;
+}
+
+@media only screen and (max-width: 320px) {
+  html, body {
+    font-size: 3.5vw;
+  }
+}
+
+@media only screen and (min-width: 323px) and (max-width: 375px) {
+  html, body {
+    font-size: 3.5vw;
+  }
+}
+
+@media only screen and (min-width: 378px) and (max-width: 414px) {
+  html, body {
+    font-size: 4vw;
+  }
+}
+
+@media only screen and (min-width: 415px) and (max-width: 375px) {
+  html, body {
+    font-size: 5.5vw;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .about-card {
+    padding: 20px;
+  }
+}
+
+@media only screen and (min-width: 760px) {
+  #appLogo {
+    width: 13vw;
+    height: 13vw;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  #transactions-table {
+    display: block;
+  }
+
+  #transactions-header {
+    margin-bottom: 10px;
+  }
+
+  #daily_transactions, #manage_accounts {
+    width: 100%;
+  }
+}
+
+
+@media only screen and (min-width: 1010px) {
+  #mainAppHeader {
+    font-size: 4vw;
+  }
+  #mainAppText {
+    font-size: 2vw;
+  }
+}
+@media only screen and (max-width: 984px) {
+  #card-daily-transactions, #card-statistics, #card-calculator {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 985px) {
+  #transactions-table {
+    visibility: visible; 
+  }
+  #transactions-table-small {
+    display: none;
+  }
+}
+

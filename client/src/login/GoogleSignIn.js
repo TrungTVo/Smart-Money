@@ -1,0 +1,53 @@
+import React, { Component } from 'react';
+import {GoogleLogin} from 'react-google-login';
+import {googleSignIn} from '../actions/usersActions';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+class GoogleSignIn extends Component {
+  state = {
+    clientId: '654747296638-k71etcgn6rakbtfmdrsojdg85ace81d0.apps.googleusercontent.com',
+    clientSecret: 'mDV_yqcGIxJw5988ls2aBT3t',
+  }
+
+  // Success sign in with Google
+  onSuccess = (response) => {
+    //console.log(response);
+    this.props.googleSignIn(response.tokenObj, this.props.history);
+  }
+
+
+  // fail to sign in
+  onFailure = (response) => {
+    
+  }
+
+  onClick = () => {
+    console.log('Clicked');
+  }
+
+  render() {
+    return (
+      <GoogleLogin
+        clientId={this.state.clientId}
+        buttonText="Sign in with Google"
+        render={renderProps => (
+          <a href="#" id="google-button" className="btn btn-block btn-google" 
+              onClick={renderProps.onClick} data-theme="dark">
+            <i className="fa fa-google-plus fa-fw"></i> <span className='lead'>Sign in with Google</span>
+          </a>
+        )}
+        // redirectUri="/users/auth/google/callback"
+        onSuccess={this.onSuccess}
+        onFailure={this.onFailure}
+        cookiePolicy={'single_host_origin'}
+      />
+    )
+  }
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+})
+
+export default connect(mapStateToProps, { googleSignIn})(withRouter(GoogleSignIn));

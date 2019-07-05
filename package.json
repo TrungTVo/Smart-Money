@@ -1,0 +1,40 @@
+{
+  "name": "smart-money",
+  "version": "1.0.0",
+  "description": "Smart Money app",
+  "engines": {
+    "node": "8.11.1"
+  },
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-install": "cd client && npm install",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "cd client && HTTPS=true && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "Trung Vo",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.16.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.6",
+    "mongoose-float": "^1.0.4",
+    "nodemailer": "^6.1.1",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "nodemon": "^1.19.0",
+    "p-iteration": "^1.1.8",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-jwt": "^4.0.0"
+  }
+}

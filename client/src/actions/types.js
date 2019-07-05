@@ -1,0 +1,44 @@
+// users
+export const FETCH_USERS = 'FETCH_USERS';
+export const ADD_USER = 'ADD_USER';
+export const UPDATE_USER = 'UPDATE_USER';
+export const DELETE_USER = 'DELETE_USER';
+export const VERIFY_USER = 'VERIFY_USER';
+export const PASSWORD_RESET = 'PASSWORD_RESET';
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const CONTACT_DEVELOPER = 'CONTACT_DEVELOPER';
+export const LOGOUT = 'LOGOUT';
+
+// bank accounts
+export const GET_ALL_ACCOUNTS = 'GET_ALL_ACCOUNTS';
+export const GET_ACCOUNTS_LOADING = 'GET_ACCOUNTS_LOADING';
+export const ADD_ACCOUNT = 'ADD_ACCOUNT';
+export const LOAD_ACCOUNT = 'LOAD_ACCOUNT';
+export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
+export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
+
+// transactions
+export const GET_ALL_TRANSACTIONS = 'GET_ALL_TRANSACTIONS';
+export const GET_TRANSACTIONS_LOADING = 'GET_TRANSACTIONS_LOADING';
+export const ADD_TRANSACTION = 'ADD_TRANSACTION';
+export const UPDATE_TRANSACTION = 'UPDATE_TRANSACTION';
+export const DELETE_TRANSACTION = 'DELETE_TRANSACTION';
+
+// errors
+export const GET_ERRORS = 'GET_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const DUPLICATE_USER = 'DUPLICATE_USER';
+export const LACK_INFO_FIELDS = 'LACK_INFO_FIELDS';
+export const USER_NOT_FOUND_OR_WRONG_PASSWORD = 'USER_NOT_FOUND_OR_WRONG_PASSWORD';
+
+// data analysis
+export const DATA_ANALYSIS = 'DATA_ANALYSIS';
+export const DATA_ANALYZING = 'DATA_ANALYZING';
+export const OVERALL_ANALYSIS = 'OVERALL_ANALYSIS';
+export const OVERALL_ANALYZING = 'OVERALL_ANALYZING';
+
+// success
+export const GET_SUCCESS = 'GET_SUCCESS';
+export const CLEAR_SUCCESS = 'CLEAR_SUCCESS';
+
