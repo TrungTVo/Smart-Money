@@ -12,8 +12,6 @@ const Account = require('../models/Account');
 // load transaction model
 const Transaction = require('../models/Transaction');
 
-router.get('/', (req, res) => res.send('Hello'));
-
 // contact
 router.post('/contact', (req, res) => {
   const {name, email, phone, message} = req.body;
