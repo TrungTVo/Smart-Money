@@ -94,7 +94,7 @@ export class Main extends Component {
               <h1 id="mainAppHeader" className='text-white'>Smart Money</h1>
               <blockquote className="text-white text-center" id="mainAppText" >
                 <p>Keep track of your spending, create budget and stay out of debt. We provide all services and solutions you will ever need to achieve your financial goals.</p>
-                <img src='/img/profile.jpg' className='rounded-circle img-thumbnail' style={{height: '105px'}} />
+                <img src='/img/profile.jpg' alt='author' className='rounded-circle img-thumbnail' style={{height: '105px'}} />
                 <footer className="font-weight-bold blockquote-footer mt-2" id="mainAppFooter" >
                   <span className='text-white'>Trung Vo,</span> <cite title="Source Title" className='text-white'>Software Developer</cite>
                 </footer>

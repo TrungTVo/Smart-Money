@@ -32,10 +32,10 @@ class GoogleSignIn extends Component {
         clientId={this.state.clientId}
         buttonText="Sign in with Google"
         render={renderProps => (
-          <a href="#" id="google-button" className="btn btn-block btn-google" 
+          <button href="#" id="google-button" className="btn btn-block btn-google" 
               onClick={renderProps.onClick} data-theme="dark">
             <i className="fa fa-google-plus fa-fw"></i> <span className='lead'>Sign in with Google</span>
-          </a>
+          </button>
         )}
         // redirectUri="/users/auth/google/callback"
         onSuccess={this.onSuccess}

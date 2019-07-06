@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../layouts/NavBar';
 import Footer from '../layouts/Footer';
-import MyChart from '../common/charts/MyChart';
 import ManageAccounts from './ManageAccounts';
-import data from '../fake-data/data';
 import {loadAccounts} from '../actions/accountActions';
 import {connect} from 'react-redux';
 import DailyTransactions from './DailyTransactions';

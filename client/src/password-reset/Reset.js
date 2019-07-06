@@ -31,7 +31,6 @@ export class Reset extends Component {
 
   render() {
     const {user, errors, success} = this.props;
-    console.log(success)
     return (
       <div>
         <NavBar/>

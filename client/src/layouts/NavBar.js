@@ -110,7 +110,7 @@ export class NavBar extends Component {
                       <span>&nbsp;&nbsp;</span>{this.props.auth.user.name}
                     </div>
                     <span>&nbsp;&nbsp;</span>
-                    <a onClick={this.logOut} href="">Logout</a>
+                    <a onClick={this.logOut} href="/users/login">Logout</a>
                   </div> 
                 </div> : 
                 <div className="navbar-text">

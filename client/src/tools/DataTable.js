@@ -6,7 +6,6 @@ import {
   DataTypeProvider,
   SearchState,
   IntegratedFiltering,
-  EditingState,
   SortingState,
   IntegratedSorting,
   SelectionState
@@ -16,7 +15,6 @@ import {
   Grid, Table,
   TableHeaderRow, PagingPanel,
   SearchPanel, Toolbar,
-  TableEditRow,
   TableSelection
 } from '@devexpress/dx-react-grid-bootstrap4';
 
@@ -135,7 +133,7 @@ const SortingIcon = ({ direction }) => (
 
 const SortLabel = ({ onSort, children, direction }) => {
   return (
-    <a
+    <span
       className="font-weight-bold"
       onClick={onSort}
       style={{cursor: 'pointer' }}
@@ -143,7 +141,7 @@ const SortLabel = ({ onSort, children, direction }) => {
       {children}
       {(direction && <SortingIcon direction={direction} />)}
       {children.props.children === 'Date' ? <div><small>(yyyy/mm/dd)</small></div> : null}
-    </a>
+    </span>
   );
 }
 
@@ -266,7 +264,7 @@ class DataTable extends React.PureComponent {
       selection, selected_row
     } = this.state;
 
-    const {account, transactions, accounts} = this.props;
+    const {account, transactions} = this.props;
     var balance = typeof transactions.account !== 'undefined' && transactions.account !== null ? transactions.account.balance : '';
     ACCOUNT_CURRENCY = account.currency;
 
