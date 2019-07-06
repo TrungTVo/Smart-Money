@@ -236,7 +236,7 @@ export const verifyEmail = (email) => dispatch => {
 
 // reset user password
 export const resetPassword = (token, history) => dispatch => {
-  axios.get(`/users/reset/${token}`)
+  axios.get(`/users/resetPass/${token}`)
     .then(res => {
       dispatch({
         type: actions.PASSWORD_RESET,
