@@ -252,7 +252,7 @@ router.post('/verify', (req, res) => {
         
         // HTML output to be sent to receiver email
         const output = ejs.render(template, {
-          resetUrl: `http://${req.headers['x-forwarded-host']}/users/reset/${token}`
+          resetUrl: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/reset/${token}` : `http://smart-money-vtt.herokuapp.com/users/reset/${token}`
         });
         
         // Create Email Options
