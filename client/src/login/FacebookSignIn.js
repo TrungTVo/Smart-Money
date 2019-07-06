@@ -10,13 +10,15 @@ class FacebookSignIn extends Component {
   }
 
   responseFacebook = (response) => {
-    const userInfo = {
-      name: response.name,
-      email: response.email,
-      imageUrl: response.picture.data.url,
-      token: response.accessToken
+    if (typeof response.status !== 'undefined') {
+      const userInfo = {
+        name: response.name,
+        email: response.email,
+        imageUrl: response.picture.data.url,
+        token: response.accessToken
+      }
+      this.props.facebookSignIn(userInfo, this.props.history);
     }
-    this.props.facebookSignIn(userInfo, this.props.history);
   }
 
 
