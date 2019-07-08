@@ -157,6 +157,61 @@ router.post('/googleLogin', (req, res) => {
 
           // sign in
           signInToken(newUser, res, '');
+
+          // send email to exist user
+          // Configure Nodemailer SendGrid Transporter
+          const transporter = nodemailer.createTransport(
+            sendgridTransport({
+              auth: {
+                api_user: 'ttvo',    // SG username
+                api_key: 'Trungtennis96#' // SG password
+              },
+            })
+          );
+
+          // Configure mailgen by setting a theme and your product info
+          var mailGenerator = new Mailgen({
+            theme: 'default',
+            product: {
+              // Appears in header & footer of e-mails
+              name: 'Smart Money',
+              link: 'https://smart-money-vtt.herokuapp.com/',
+              copyright: `Copyright © <a href='https://smart-money-vtt.herokuapp.com/'>Smart Money</a>. All rights reserved.`,
+            }
+          });
+
+          var email_info = {
+            body: {
+              name: user.name,
+              intro: 'Welcome to Smart Money! We\'re very excited to have you on board.',
+              action: {
+                instructions: 'We provide all solutions and services you will ever need to achieve your financial goals.',
+                button: {
+                  color: '#22BC66', // Optional action button color
+                  text: 'Your profile',
+                  link: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/dashboard` : `https://${req.hostname}/users/dashboard`
+                }
+              },
+              outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
+              signature: 'Thanks'
+            }
+          };
+
+          // Generate an HTML email with the provided contents
+          var emailBody = mailGenerator.generate(email_info);
+
+          // Create Email Options
+          const options = {
+            to: email,
+            from: 'trung.vo.ron@gmail.com', // Totally up to you
+            subject: 'Welcome to Smart Money',
+            html: emailBody,             // For sending HTML emails
+          };
+
+          // send mail with defined transport object
+          transporter.sendMail(options, (error, info) => {
+            if (error) throw error;
+          });
         })
         .catch(err => { if (err) throw err });
         
@@ -199,6 +254,61 @@ router.post('/facebookLogin', (req, res) => {
 
           // sign in
           signInToken(newUser, res, '');
+
+          // send email to exist user
+          // Configure Nodemailer SendGrid Transporter
+          const transporter = nodemailer.createTransport(
+            sendgridTransport({
+              auth: {
+                api_user: 'ttvo',    // SG username
+                api_key: 'Trungtennis96#' // SG password
+              },
+            })
+          );
+
+          // Configure mailgen by setting a theme and your product info
+          var mailGenerator = new Mailgen({
+            theme: 'default',
+            product: {
+              // Appears in header & footer of e-mails
+              name: 'Smart Money',
+              link: 'https://smart-money-vtt.herokuapp.com/',
+              copyright: `Copyright © <a href='https://smart-money-vtt.herokuapp.com/'>Smart Money</a>. All rights reserved.`,
+            }
+          });
+
+          var email_info = {
+            body: {
+              name: user.name,
+              intro: 'Welcome to Smart Money! We\'re very excited to have you on board.',
+              action: {
+                instructions: 'We provide all solutions and services you will ever need to achieve your financial goals.',
+                button: {
+                  color: '#22BC66', // Optional action button color
+                  text: 'Your profile',
+                  link: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/dashboard` : `https://${req.hostname}/users/dashboard`
+                }
+              },
+              outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
+              signature: 'Thanks'
+            }
+          };
+
+          // Generate an HTML email with the provided contents
+          var emailBody = mailGenerator.generate(email_info);
+
+          // Create Email Options
+          const options = {
+            to: email,
+            from: 'trung.vo.ron@gmail.com', // Totally up to you
+            subject: 'Welcome to Smart Money',
+            html: emailBody,             // For sending HTML emails
+          };
+
+          // send mail with defined transport object
+          transporter.sendMail(options, (error, info) => {
+            if (error) throw error;
+          });
         })
           .catch(err => { if (err) throw err });
 
@@ -256,6 +366,7 @@ router.post('/verify', (req, res) => {
             // Appears in header & footer of e-mails
             name: 'Smart Money',
             link: 'https://smart-money-vtt.herokuapp.com/',
+            copyright: `Copyright © <a href='https://smart-money-vtt.herokuapp.com/'>Smart Money</a>. All rights reserved.`,
           }
         });
 
@@ -271,7 +382,11 @@ router.post('/verify', (req, res) => {
                 link: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/reset/${token}` : `https://${req.hostname}/users/reset/${token}`
               }
             },
-            outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
+            outro: `
+              <p>If this wasn't your intention, just simply disregard this message.</p>
+              <p>Need help, or have questions? Just reply to this email, we\'d love to help.</p>
+            `,
+            signature: 'Thanks'
           }
         };
 
@@ -415,11 +530,62 @@ router.delete('/delete',
       Account.deleteMany({user: req.user.id})
         .then(() => {
           User.findOneAndDelete({ _id: req.user.id })
-            .then(() =>
-              res.status(200).json({
-                success_msg: 'Your account has been deleted.'
-              })
-            ).catch(err => {
+            .then(() => {
+
+              // notify via email
+              // Configure mailgen by setting a theme and your product info
+              var mailGenerator = new Mailgen({
+                theme: 'default',
+                product: {
+                  // Appears in header & footer of e-mails
+                  name: 'Smart Money',
+                  link: 'https://smart-money-vtt.herokuapp.com/',
+                  copyright: `Copyright © <a href='https://smart-money-vtt.herokuapp.com/'>Smart Money</a>. All rights reserved.`,
+                }
+              });
+
+              var email_info = {
+                body: {
+                  name: req.user.name,
+                  intro: 'Your account has been deleted successfully. We\'re sorry to hear you left. We hope to have you back in future.',
+                  outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
+                  signature: 'Thanks'
+                }
+              };
+
+              // Generate an HTML email with the provided contents
+              var emailBody = mailGenerator.generate(email_info);
+
+              // Create Email Options
+              const options = {
+                to: req.user.email,
+                from: 'trung.vo.ron@gmail.com',
+                subject: 'Smart Money - Delete account',
+                html: emailBody,
+              };
+
+              // send email to exist user
+              // Configure Nodemailer SendGrid Transporter
+              const transporter = nodemailer.createTransport(
+                sendgridTransport({
+                  auth: {
+                    api_user: 'ttvo',    // SG username
+                    api_key: 'Trungtennis96#' // SG password
+                  },
+                })
+              );
+
+              // send mail with defined transport object
+              transporter.sendMail(options, (error, info) => {
+                if (error) throw error;
+                //console.log(info);
+                var success_obj = {
+                  success_msg: "Your account has been deleted.",
+                };
+                return res.status(200).json(success_obj);
+              });
+
+            }).catch(err => {
               if (err) throw err;
             })
         })
@@ -493,6 +659,7 @@ createUser = (user, req, res) => {
             // Appears in header & footer of e-mails
             name: 'Smart Money',
             link: 'https://smart-money-vtt.herokuapp.com/',
+            copyright: `Copyright © <a href='https://smart-money-vtt.herokuapp.com/'>Smart Money</a>. All rights reserved.`,
           }
         });
 
@@ -508,7 +675,8 @@ createUser = (user, req, res) => {
                 link: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/dashboard` : `https://${req.hostname}/users/dashboard`
               }
             },
-            outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
+            outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
+            signature: 'Thanks'
           }
         };
 

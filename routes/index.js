@@ -57,6 +57,7 @@ router.post('/contact', (req, res) => {
         // Appears in header & footer of e-mails
         name: 'Smart Money',
         link: 'https://smart-money-vtt.herokuapp.com/',
+        copyright: `Copyright © <a href='https://smart-money-vtt.herokuapp.com/'>Smart Money</a>. All rights reserved.`,
       }
     });
 
