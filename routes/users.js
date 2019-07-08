@@ -21,7 +21,8 @@ const Account = require('../models/Account');
 const Transaction = require('../models/Transaction');
 
 // HTML email template for when user requests to reset password
-var template = fs.readFileSync('./views/email.ejs', 'utf-8' );
+var template_email = fs.readFileSync('./views/email.ejs', 'utf-8' );
+var template_welcome = fs.readFileSync('./views/welcome.ejs', 'utf-8');
 
 const actions = require('../actions/types');
 
@@ -251,7 +252,7 @@ router.post('/verify', (req, res) => {
         });
        
         // HTML output to be sent to receiver email
-        const output = ejs.render(template, {
+        const output = ejs.render(template_email, {
           resetUrl: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/reset/${token}` : `https://${req.hostname}/users/reset/${token}`
         });
         
@@ -451,10 +452,36 @@ createUser = (user, res) => {
     // save new user to DB
     newUser.save()
       .then(() => {
-        //console.log('Success: ' + user);
-        res.status(200).json({
-          success_msg: 'Welcome! You can now log in.',
-          new_user: newUser
+
+        // send email to exist user
+        // Configure Nodemailer SendGrid Transporter
+        const transporter = nodemailer.createTransport(
+          sendgridTransport({
+            auth: {
+              api_user: 'ttvo',    // SG username
+              api_key: 'Trungtennis96#' // SG password
+            },
+          })
+        );
+
+        // HTML output to be sent to receiver email
+        const output = ejs.render(template_welcome);
+
+        // Create Email Options
+        const options = {
+          to: email,
+          from: 'trung.vo.ron@gmail.com', // Totally up to you
+          subject: 'Welcome to Smart Money',
+          html: output,             // For sending HTML emails
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(options, (error, info) => {
+          if (error) throw error;
+          res.status(200).json({
+            success_msg: 'Welcome! You can now log in.',
+            new_user: newUser
+          });
         });
       })
       .catch(err => { if (err) throw err });
