@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 
 // initialize
@@ -11,10 +10,6 @@ const PORT = process.env.PORT || 5000;
 
 // public static files
 app.use(express.static(__dirname + '/public'));
-
-// EJS
-//app.use(expressLayouts);
-app.set('view engine', 'ejs');
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,8 +20,6 @@ const dbURI = require('./config/keys').mongoURI;
 mongoose.connect(dbURI, { useNewUrlParser: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.log(`Error while connecting to MongoDB:\n${err}`));
-
-var conn = mongoose.connection;
 
 // Passport middleware
 app.use(passport.initialize());

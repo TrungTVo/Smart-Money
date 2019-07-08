@@ -12,6 +12,7 @@ const fs = require('fs');
 const ejs = require('ejs');
 const hash = require('../utils/hash');
 const passport = require('passport');
+var Mailgen = require('mailgen');
 
 // load User model
 const User = require('../models/User');
@@ -19,10 +20,6 @@ const User = require('../models/User');
 const Account = require('../models/Account');
 // load transaction model
 const Transaction = require('../models/Transaction');
-
-// HTML email template for when user requests to reset password
-var template_email = fs.readFileSync('./views/email.ejs', 'utf-8' );
-var template_welcome = fs.readFileSync('./views/welcome.ejs', 'utf-8');
 
 const actions = require('../actions/types');
 
@@ -73,7 +70,7 @@ router.post('/register', (req, res) => {
             password: password1
           };
           // register
-          createUser(newUser, res);
+          createUser(newUser, req, res);
         }
       })
       .catch(err => {if (err) throw err});
@@ -227,6 +224,7 @@ router.post('/verify', (req, res) => {
       var error = { error_msg: `User with this email not found!`};
       return res.status(400).json(error);
     } else {
+
       // send email to exist user
       // Configure Nodemailer SendGrid Transporter
       const transporter = nodemailer.createTransport(
@@ -250,18 +248,42 @@ router.post('/verify', (req, res) => {
         user.save((err) => {
           if (err) throw err
         });
-       
-        // HTML output to be sent to receiver email
-        const output = ejs.render(template_email, {
-          resetUrl: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/reset/${token}` : `https://${req.hostname}/users/reset/${token}`
+
+        // Configure mailgen by setting a theme and your product info
+        var mailGenerator = new Mailgen({
+          theme: 'default',
+          product: {
+            // Appears in header & footer of e-mails
+            name: 'Smart Money',
+            link: 'https://smart-money-vtt.herokuapp.com/',
+          }
         });
+
+        var email_info = {
+          body: {
+            name: user.name,
+            intro: 'You have a request for changing your account password.',
+            action: {
+              instructions: 'To update your password, please click the following link below:',
+              button: {
+                color: '#22BC66', // Optional action button color
+                text: 'Reset password',
+                link: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/reset/${token}` : `https://${req.hostname}/users/reset/${token}`
+              }
+            },
+            outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
+          }
+        };
+
+        // Generate an HTML email with the provided contents
+        var emailBody = mailGenerator.generate(email_info);
         
         // Create Email Options
         const options = {
           to: email,
-          from: 'trung.vo.ron@gmail.com', // Totally up to you
+          from: 'trung.vo.ron@gmail.com', 
           subject: 'Smart Money - Password reset request',
-          html: output,             // For sending HTML emails
+          html: emailBody,             
         };
 
         // send mail with defined transport object
@@ -435,7 +457,7 @@ signInToken = (user, res, message) => {
 }
 
 
-createUser = (user, res) => {
+createUser = (user, req, res) => {
   const {name, email, password, imageUrl} = user;
   // create new user
   const newUser = new User({
@@ -463,16 +485,42 @@ createUser = (user, res) => {
             },
           })
         );
+        
+        // Configure mailgen by setting a theme and your product info
+        var mailGenerator = new Mailgen({
+          theme: 'default',
+          product: {
+            // Appears in header & footer of e-mails
+            name: 'Smart Money',
+            link: 'https://smart-money-vtt.herokuapp.com/',
+          }
+        });
 
-        // HTML output to be sent to receiver email
-        const output = ejs.render(template_welcome);
+        var email_info = {
+          body: {
+            name: user.name,
+            intro: 'Welcome to Smart Money! We\'re very excited to have you on board.',
+            action: {
+              instructions: 'We provide all solutions and services you will ever need to achieve your financial goals.',
+              button: {
+                color: '#22BC66', // Optional action button color
+                text: 'Your profile',
+                link: process.env.NODE_ENV !== 'production' ? `http://${req.headers['x-forwarded-host']}/users/dashboard` : `https://${req.hostname}/users/dashboard`
+              }
+            },
+            outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
+          }
+        };
+
+        // Generate an HTML email with the provided contents
+        var emailBody = mailGenerator.generate(email_info);
 
         // Create Email Options
         const options = {
           to: email,
           from: 'trung.vo.ron@gmail.com', // Totally up to you
           subject: 'Welcome to Smart Money',
-          html: output,             // For sending HTML emails
+          html: emailBody,             // For sending HTML emails
         };
 
         // send mail with defined transport object

@@ -5,6 +5,7 @@ const sendgridTransport = require('nodemailer-sendgrid-transport');
 const actions = require('../actions/types');
 const passport = require('passport');
 const { map } = require('p-iteration');
+var Mailgen = require('mailgen');
 
 // load account model
 const Account = require('../models/Account');
@@ -49,16 +50,30 @@ router.post('/contact', (req, res) => {
       })
     );
 
-    // HTML output to be sent to receiver email
-    const output = `
-      <h1>You have a message from ${name}, on Smart Money</h1>
-      <ul>
-        <li>Name: ${name}</li>
-        <li>Email: ${email}</li>
-        <li>Phone: ${phone}</li>
-        <li>Message: ${message}</li>
-      </ul>
-    `;
+    // Configure mailgen by setting a theme and your product info
+    var mailGenerator = new Mailgen({
+      theme: 'default',
+      product: {
+        // Appears in header & footer of e-mails
+        name: 'Smart Money',
+        link: 'https://smart-money-vtt.herokuapp.com/',
+      }
+    });
+
+    var email_info = {
+      body: {
+        name: 'Trung',
+        intro: `You have a message from ${name}`,
+        outro: `<p>Name: ${name}</p>
+            <p>Email: ${email}</p>
+            <p>Phone: ${phone}</p>
+            <p>Message: ${message}</p>
+        `
+      }
+    };
+
+    // Generate an HTML email with the provided contents
+    var emailBody = mailGenerator.generate(email_info);
     
     // Create Email Options
     const options = {
@@ -66,7 +81,7 @@ router.post('/contact', (req, res) => {
       from: email, 
       subject: `Smart Money - Message from ${name}`,
       text: `Hello from ${name}`,
-      html: output,             // For sending HTML emails
+      html: emailBody,             
     };
 
     // send mail with defined transport object
