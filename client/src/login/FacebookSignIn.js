@@ -3,10 +3,14 @@ import FacebookLogin from 'react-facebook-login';
 import { facebookSignIn } from '../actions/usersActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 class FacebookSignIn extends Component {
   state = {
-    appId: '2540434142655804',
+    //appId: '2540434142655804',
+    appId: process.env.REACT_APP_FACEBOOK_APP_ID
   }
 
   responseFacebook = (response) => {

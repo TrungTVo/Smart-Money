@@ -3,11 +3,16 @@ import {GoogleLogin} from 'react-google-login';
 import {googleSignIn} from '../actions/usersActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 class GoogleSignIn extends Component {
   state = {
-    clientId: '654747296638-k71etcgn6rakbtfmdrsojdg85ace81d0.apps.googleusercontent.com',
-    clientSecret: 'mDV_yqcGIxJw5988ls2aBT3t',
+    //clientId: '654747296638-k71etcgn6rakbtfmdrsojdg85ace81d0.apps.googleusercontent.com',
+    //clientSecret: 'mDV_yqcGIxJw5988ls2aBT3t',
+    clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    clientSecret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET
   }
 
   // Success sign in with Google
