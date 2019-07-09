@@ -3,9 +3,6 @@ import {GoogleLogin} from 'react-google-login';
 import {googleSignIn} from '../actions/usersActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 class GoogleSignIn extends Component {
   state = {

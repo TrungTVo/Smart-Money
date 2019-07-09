@@ -3,9 +3,6 @@ import FacebookLogin from 'react-facebook-login';
 import { facebookSignIn } from '../actions/usersActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 class FacebookSignIn extends Component {
   state = {
