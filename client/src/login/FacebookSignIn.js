@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 
 class FacebookSignIn extends Component {
   state = {
-    //appId: '2540434142655804',
     appId: process.env.REACT_APP_FACEBOOK_APP_ID
   }
 

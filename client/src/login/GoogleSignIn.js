@@ -6,8 +6,6 @@ import { withRouter } from 'react-router-dom';
 
 class GoogleSignIn extends Component {
   state = {
-    //clientId: '654747296638-k71etcgn6rakbtfmdrsojdg85ace81d0.apps.googleusercontent.com',
-    //clientSecret: 'mDV_yqcGIxJw5988ls2aBT3t',
     clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
     clientSecret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET
   }
