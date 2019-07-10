@@ -4,8 +4,6 @@ import {googleSignIn} from '../actions/usersActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-console.log(process.env)
-
 class GoogleSignIn extends Component {
   state = {
     //clientId: '654747296638-k71etcgn6rakbtfmdrsojdg85ace81d0.apps.googleusercontent.com',
