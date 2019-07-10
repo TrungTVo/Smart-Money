@@ -1,5 +1,6 @@
 /node_modules
 /client/node_modules
 /client/.env
+/client/.env.swp
 package-lock.json
 .env
