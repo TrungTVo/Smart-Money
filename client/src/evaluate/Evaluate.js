@@ -45,8 +45,10 @@ class Evaluate extends Component {
         }, () => {
           if (!this.state.rendered) {
             this.setState({ rendered: true}, () => {
-              this.props.analysis(this.state.selected_account_id, selected_month, selected_year);
-              this.props.overall_analysis(this.state.selected_account_id, this.state.selected_overallYear);
+              if (this.state.selected_account_id !== '') {
+                this.props.analysis(this.state.selected_account_id, selected_month, selected_year);
+                this.props.overall_analysis(this.state.selected_account_id, this.state.selected_overallYear);
+              }
             })
           }
         })
@@ -61,14 +63,20 @@ class Evaluate extends Component {
       [e.target.id]: e.target.value
     }, () => {
       if (target_type === 'selected_account_id') {
-        this.props.analysis(this.state.selected_account_id, this.state.selected_month, this.state.selected_year);
-        this.props.overall_analysis(this.state.selected_account_id, this.state.selected_overallYear);
+        if (this.state.selected_account_id !== '') {
+          this.props.analysis(this.state.selected_account_id, this.state.selected_month, this.state.selected_year);
+          this.props.overall_analysis(this.state.selected_account_id, this.state.selected_overallYear);
+        }
       } else if (target_type === 'selected_month' || target_type === 'selected_year') {
         // analysis based on specific month of year
-        this.props.analysis(this.state.selected_account_id, this.state.selected_month, this.state.selected_year);
+        if (this.state.selected_account_id !== '') {
+          this.props.analysis(this.state.selected_account_id, this.state.selected_month, this.state.selected_year);
+        }
       } else {
         // overall analysis based on year
-        this.props.overall_analysis(this.state.selected_account_id, this.state.selected_overallYear);
+        if (this.state.selected_account_id !== '') {
+          this.props.overall_analysis(this.state.selected_account_id, this.state.selected_overallYear);
+        }
       }
     })
   }
@@ -87,7 +95,6 @@ class Evaluate extends Component {
       })
       colors = colors_array.slice(0, dataAnalysis.categories.length);
     }
-
 
     return (
       <div>
@@ -347,6 +354,12 @@ class Evaluate extends Component {
               <br/>
 
               {
+                selected_account_id === '' ?
+                  <p className='lead text-muted'>No bank accounts found.</p> :
+                  null
+              }
+
+              {
                 dataAnalysis.overall_analyzing ?
                   <div className="d-flex justify-content-center mb-4">
                     <div className="spinner-border" role="status">
@@ -439,11 +452,13 @@ class Evaluate extends Component {
                       series={[
                         {
                           name: "Earned",
-                          data: !dataAnalysis.overall_analyzing ? Object.values(dataAnalysis.overall_data).map(pair => pair.earned) : [],
+                          data: selected_account_id === '' || (typeof selected_account_id === 'string' && selected_account_id.length === 0) ? [] :
+                            (!dataAnalysis.overall_analyzing ? Object.values(dataAnalysis.overall_data).map(pair => pair.earned) : []),
                         },
                         {
                           name: "Expense",
-                          data: !dataAnalysis.overall_analyzing ? Object.values(dataAnalysis.overall_data).map(pair => pair.expense) : [],
+                          data: selected_account_id === '' || (typeof selected_account_id === 'string' && selected_account_id.length === 0) ? [] :
+                            (!dataAnalysis.overall_analyzing ? Object.values(dataAnalysis.overall_data).map(pair => pair.expense) : []),
                         }
                       ]}
                       height='350'

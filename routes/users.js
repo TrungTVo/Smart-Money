@@ -406,7 +406,7 @@ router.post('/verify', (req, res) => {
           if (error) throw error;
           //console.log(info);
           var success_obj = {
-            success_msg: "Email sent! (Be sure to check spam folder)",
+            success_msg: "Email has been sent.",
           };
           return res.status(200).json(success_obj);
         });
