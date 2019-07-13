@@ -1,4 +1,7 @@
+var dotenv = require('dotenv');
+dotenv.config();
+
 module.exports = {
-  mongoURI: 'mongodb+srv://trung:Ngosilien123@cluster0-r21n2.mongodb.net/smartMoney?retryWrites=true&w=majority',
-  secretOrKey: 'secret'
+  mongoURI: process.env.MONGO_URI,
+  secretOrKey: process.env.SECRET_OR_KEY
 }
