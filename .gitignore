@@ -1,4 +1,5 @@
 /node_modules
+/config/keys.js
 /client/node_modules
 /client/.env
 /client/.env.swp
