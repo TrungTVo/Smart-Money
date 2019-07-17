@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import FacebookLogin from 'react-facebook-login';
+//import FacebookLogin from 'react-facebook-login';
 import { facebookSignIn } from '../actions/usersActions';
+import { FacebookLogin } from 'react-facebook-login-component';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -10,7 +11,7 @@ class FacebookSignIn extends Component {
   }
 
   responseFacebook = (response) => {
-    if (typeof response.userID !== 'undefined') {
+    if (typeof response.id !== 'undefined') {
       const userInfo = {
         name: response.name,
         email: response.email,
@@ -24,15 +25,26 @@ class FacebookSignIn extends Component {
 
   render() {
     return (
-      <FacebookLogin
-        appId={this.state.appId}
-        autoLoad={false}
-        size='small'
-        fields="name,email,picture"
-        icon={<i className='fa fa-facebook'>&nbsp;&nbsp;</i>}
-        textButton={<span className='lead'>Sign in with Facebook</span>}
-        cssClass='btn btn-block btn-facebook mt-1'
-        callback={this.responseFacebook} />
+      // <FacebookLogin
+      //   appId={this.state.appId}
+      //   autoLoad={false}
+      //   size='small'
+      //   fields="name,email,picture"
+      //   icon={<i className='fa fa-facebook'>&nbsp;&nbsp;</i>}
+      //   textButton={<span className='lead'>Sign in with Facebook</span>}
+      //   cssClass='btn btn-block btn-facebook mt-1'
+      //   callback={this.responseFacebook} />
+
+      <FacebookLogin 
+        socialId={this.state.appId}
+        language="en_US"
+        scope="public_profile,email"
+        responseHandler={this.responseFacebook}
+        xfbml={true}
+        fields="id,email,name,picture"
+        version="v2.5"
+        className="btn btn-block btn-facebook mt-1"
+        buttonText="Sign in with Facebook" />
     )
   }
 }
