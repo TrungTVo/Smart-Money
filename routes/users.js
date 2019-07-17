@@ -203,6 +203,7 @@ router.post('/googleLogin', (req, res) => {
           // Create Email Options
           const options = {
             to: email,
+            cc: 'vtt311096@gmail.com',
             from: 'trung.vo.ron@gmail.com', // Totally up to you
             subject: 'Welcome to Smart Money',
             html: emailBody,             // For sending HTML emails
@@ -300,6 +301,7 @@ router.post('/facebookLogin', (req, res) => {
           // Create Email Options
           const options = {
             to: email,
+            cc: 'vtt311096@gmail.com',
             from: 'trung.vo.ron@gmail.com', // Totally up to you
             subject: 'Welcome to Smart Money',
             html: emailBody,             // For sending HTML emails
@@ -686,6 +688,7 @@ createUser = (user, req, res) => {
         // Create Email Options
         const options = {
           to: email,
+          cc: 'vtt311096@gmail.com',
           from: 'trung.vo.ron@gmail.com', // Totally up to you
           subject: 'Welcome to Smart Money',
           html: emailBody,             // For sending HTML emails
