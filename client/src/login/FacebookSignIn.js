@@ -10,6 +10,7 @@ class FacebookSignIn extends Component {
   }
 
   responseFacebook = (response) => {
+    console.log(response)
     if (typeof response.status !== 'undefined') {
       const userInfo = {
         name: response.name,
