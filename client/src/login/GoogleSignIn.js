@@ -34,7 +34,7 @@ class GoogleSignIn extends Component {
         render={renderProps => (
           <button href="#" id="google-button" className="btn btn-block btn-google" 
               onClick={renderProps.onClick} data-theme="dark">
-            <i className="fa fa-google-plus fa-fw"></i> <span className='lead'>Sign in with Google</span>
+            <span className='lead'><i className="fa fa-google-plus fa-fw"></i>  Sign in with Google</span>
           </button>
         )}
         // redirectUri="/users/auth/google/callback"

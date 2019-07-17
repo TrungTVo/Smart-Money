@@ -44,7 +44,8 @@ class FacebookSignIn extends Component {
         fields="id,email,name,picture"
         version="v2.5"
         className="btn btn-block btn-facebook mt-1"
-        buttonText="Sign in with Facebook" />
+        buttonText={<span className='lead'><i className='fa fa-facebook'>&nbsp;&nbsp;</i>Sign in with Facebook</span>}
+      />
     )
   }
 }
