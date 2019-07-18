@@ -81,7 +81,7 @@ export class NavBar extends Component {
                   <li className={"nav-item " + (this.state.active === 'evaluate' ? 'active font-weight-bold' : '')} >
                     <a className="nav-link"
                       id="evaluate" onClick={this.onClick}
-                      href="/evaluate">Evaluate</a>
+                      href="/evaluate">Analysis</a>
                   </li>
                   : null
               }
