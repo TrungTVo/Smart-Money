@@ -161,7 +161,7 @@ class ManageAccounts extends Component {
                       iconType={'money-bill-wave'} />
 
                     <InputGroup htmlFor="budget"
-                      label="Budget"
+                      label="Budget per month"
                       type="budget"
                       id="budget"
                       name="budget"

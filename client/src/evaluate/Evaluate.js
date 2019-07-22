@@ -370,12 +370,14 @@ class Evaluate extends Component {
                   <div>
                     <Chart
                       options={{
-                        colors: ['#66DA26', '#E91E63'],
+                        colors: ['#66DA26', '#E91E63', '#0000ff'],
                         dataLabels: {
                           enabled: false
                         },
                         stroke: {
-                          curve: 'smooth'
+                          curve: 'smooth',
+                          width: [2, 2, 0],
+                          dashArray: [0, 0, 0]
                         },
                         title: {
                           text: `Earning vs Expense for ${selected_overallYear}`,
@@ -459,12 +461,17 @@ class Evaluate extends Component {
                           name: "Expense",
                           data: selected_account_id === '' || (typeof selected_account_id === 'string' && selected_account_id.length === 0) ? [] :
                             (!dataAnalysis.overall_analyzing ? Object.values(dataAnalysis.overall_data).map(pair => pair.expense) : []),
+                        },
+                        {
+                          name: "Budget per month",
+                          data: selected_account_id === '' || (typeof selected_account_id === 'string' && selected_account_id.length === 0) ? [] :
+                            (!dataAnalysis.overall_analyzing && dataAnalysis.account.budget !== 0 ? Array(12).fill(-dataAnalysis.account.budget) : []),
                         }
                       ]}
                       height='350'
-                      type="area"
+                      type='area'
                       width="100%"
-                    />
+                  />
 
                     <div className='text-center'>
                       <div className='ml-3' style={{ 'display': 'inline-flex', 'alignItems': 'center' }}>
@@ -474,6 +481,10 @@ class Evaluate extends Component {
                       <div className='ml-3' style={{ 'display': 'inline-flex', 'alignItems': 'center' }}>
                         <div style={{ backgroundColor: '#FF4560', height: '10px', width: '10px' }} className='mr-2'></div>
                         <span style={{ color: 'black' }} className='text-muted' >Expense</span>
+                      </div>
+                      <div className='ml-3' style={{ 'display': 'inline-flex', 'alignItems': 'center' }}>
+                        <div style={{ backgroundColor: '#0000FF', height: '10px', width: '10px' }} className='mr-2'></div>
+                        <span style={{ color: 'black' }} className='text-muted' >Budget/month</span>
                       </div>
                     </div>
                   </div>

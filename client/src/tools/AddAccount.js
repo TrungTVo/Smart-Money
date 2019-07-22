@@ -110,7 +110,7 @@ class AddAccount extends Component {
             placeholder="Enter account balance" />
 
           <InputGroup htmlFor="budget"
-            label="Budget"
+            label="Budget per month"
             type="budget"
             id="budget"
             name="budget"
