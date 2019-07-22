@@ -23,7 +23,7 @@ export class Main extends Component {
       <div>
         <NavBar active="home" />
         <div className="row pt-5 pb-5 m-auto justify-content-around" id="mainPage">
-          <div className="col-md-5">
+          <div className="col-md-5" style={{ 'display': 'flex', 'alignItems': 'center' }}>
             <div className={"card card-body text-center shadow-lg border-0 rounded" + (this.props.auth.isAuthenticated ? " bg-primary":"") } >
               {
                 !this.props.auth.isAuthenticated ? 
