@@ -38,14 +38,16 @@ export class ModalEdit extends Component {
   }
 
   reset = (nextProps) => {
-    this.setState({
-      id: nextProps.transaction._id,
-      date: new Date(nextProps.transaction.date),
-      amount: nextProps.transaction.amount,
-      category: nextProps.transaction.category,
-      notes: nextProps.transaction.notes,
-      payee: nextProps.transaction.payee
-    })
+    if (typeof nextProps.transaction !== 'undefined') {
+      this.setState({
+        id: nextProps.transaction._id,
+        date: new Date(nextProps.transaction.date),
+        amount: nextProps.transaction.amount,
+        category: nextProps.transaction.category,
+        notes: nextProps.transaction.notes,
+        payee: nextProps.transaction.payee
+      })
+    }
   }
 
   handleChangeDate = (date) => {
