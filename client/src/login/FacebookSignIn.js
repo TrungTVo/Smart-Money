@@ -9,7 +9,7 @@ class FacebookSignIn extends Component {
   state = {
     appId: process.env.REACT_APP_FACEBOOK_APP_ID
   }
-
+  
   responseFacebook = (response) => {
     if (typeof response.id !== 'undefined') {
       const userInfo = {
