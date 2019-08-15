@@ -114,7 +114,7 @@ function analysis(data, month, transactions_list) {
       }
     ).then(() => {
       data.earned = earned;
-      data.expense = expense;
+      data.expense = parseFloat(expense.toFixed(2));
       resolve(data);
     })
   })
@@ -135,7 +135,7 @@ router.post('/analysis',
                   amounts: Object.values(data.data),
                   data: data.data,
                   earned: data.earned,
-                  expense: data.expense,
+                  expense: parseFloat(data.expense.toFixed(2)),
                   account: account
                 })
               })
@@ -163,6 +163,8 @@ function overall_analysis(data, transactions_list) {
           data[month]['earned'] += transaction.amount;
         }
       }
+      data[month]['expense'] = parseFloat(data[month]['expense'].toFixed(2));
+      data[month]['earned'] = parseFloat(data[month]['earned'].toFixed(2));
     })
     .then(() => {
       for (var i=1; i<=12; i++) {

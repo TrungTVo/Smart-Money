@@ -320,7 +320,7 @@ class Evaluate extends Component {
                                       <div key={i} className='ml-3' style={{ 'display': 'inline-flex', 'alignItems': 'center' }}>
                                         <div style={{ backgroundColor: colors[i], height: '10px', width: '10px' }} className='mr-2'></div>
                                         <span style={{ color: 'black' }} className='text-muted' >{data[0]}:</span>
-                                        <span className={data[1] > 0 ? 'text-success' : 'text-danger'}>&nbsp;&nbsp; {data[1] < 0 ? '-' : ''}{currencyTypes[account.currency]}{numberWithCommas(Math.abs(data[1]))}</span>
+                                        <span className={data[1] > 0 ? 'text-success' : 'text-danger'}>&nbsp;&nbsp; {data[1] < 0 ? '-' : ''}{currencyTypes[account.currency]}{numberWithCommas(parseFloat(Math.abs(data[1]).toFixed(2)))}</span>
                                       </div>
                                     )
                                     : null
