@@ -9,7 +9,18 @@ Leverage power of data visualization tools to control every amount you spent to 
 
 Simple yet important tool for you to evaluate a stock or value of a company based on Rule#1 Investing. We are here to help you maximize your rate of return.
 
-<img width="1241" alt="Screen Shot 2019-08-16 at 6 52 38 PM" src="https://user-images.githubusercontent.com/20756728/63203781-66bf1f80-c057-11e9-8942-f841cb4e85b0.png">
-<img width="1240" alt="Screen Shot 2019-08-16 at 6 53 45 PM" src="https://user-images.githubusercontent.com/20756728/63203782-66bf1f80-c057-11e9-9aa8-87d42307450b.png">
-<img width="1240" alt="Screen Shot 2019-08-16 at 6 54 23 PM" src="https://user-images.githubusercontent.com/20756728/63203783-66bf1f80-c057-11e9-8fd4-2176921f04f1.png">
-<img width="1241" alt="Screen Shot 2019-08-16 at 6 54 35 PM" src="https://user-images.githubusercontent.com/20756728/63203784-66bf1f80-c057-11e9-92ef-17ad25d57192.png">
+## Core technology stacks
+
+- React, Redux
+- Node
+- Chart.js
+- Passport authentication
+- Json Web Token (JWT)
+- Google & Facebook login API
+- Sendgrid API
+- Mailgen
+
+<img width="1241" alt="Screen Shot 2019-08-16 at 6 52 38 PM" src="https://user-images.githubusercontent.com/20756728/63228661-b4549d00-c1bb-11e9-9c48-e323da23a751.png">
+<img width="1092" alt="Screen Shot 2019-08-16 at 6 53 45 PM" src="https://user-images.githubusercontent.com/20756728/63228662-b4549d00-c1bb-11e9-9cef-4bba7f5d70fa.png">
+<img width="1204" alt="Screen Shot 2019-08-16 at 6 54 23 PM" src="https://user-images.githubusercontent.com/20756728/63228663-b4549d00-c1bb-11e9-9d64-ee89d0e9ad85.png">
+<img width="1139" alt="Screen Shot 2019-08-16 at 6 54 35 PM" src="https://user-images.githubusercontent.com/20756728/63228664-b4549d00-c1bb-11e9-9040-de9201906c4d.png">
