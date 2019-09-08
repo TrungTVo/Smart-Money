@@ -104,7 +104,7 @@ export class Main extends Component {
         </div>
         
         <div className='row justify-content-around m-5'>
-          <div className='col-md-4 col-xs-4 mb-4'>
+          <div className='col-md-4 col-xs-4 mb-4' data-aos="fade-right" data-aos-duration="2000">
             <div className={'card card-body border-0 align-items-center'} id='card-daily-transactions' >
               <div><i className='fas fa-6x fa-file-invoice-dollar'></i></div><br/>
               <h3 className='text-center'>Daily transactions</h3>
@@ -112,7 +112,7 @@ export class Main extends Component {
             </div>
           </div>
 
-          <div className='col-md-4 col-xs-4 mb-4'>
+          <div className='col-md-4 col-xs-4 mb-4' data-aos="fade-right" data-aos-duration="2000">
             <div className={'card card-body border-0 align-items-center'} id='card-statistics' >
               <div><i className='fas fa-6x fa-chart-line'></i></div><br />
               <h3 className='text-center'>Money statistics</h3>
@@ -120,7 +120,7 @@ export class Main extends Component {
             </div>
           </div>
 
-          <div className='col-md-4 col-xs-4'>
+          <div className='col-md-4 col-xs-4' data-aos="fade-right" data-aos-duration="2000">
             <div className={'card card-body border-0 align-items-center'} id='card-calculator' >
               <div><i className='fas fa-6x fa-calculator'></i></div><br />
               <h3 className='text-center'>Investing tools</h3>

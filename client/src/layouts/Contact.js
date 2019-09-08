@@ -41,7 +41,7 @@ export class Contact extends Component {
             <img src="/img/logo.png" className="mx-auto d-block"
               id="appLogo" alt="logo" width="200" height="200" />
 
-            <div className="card card-body">
+            <div className="card card-body" data-aos="flip-left" data-aos-duration="1000">
               <h1 className="text-center mb-3"><i className="fas fa-paper-plane"></i> Contact</h1>
               {
                 success.type === actions.CONTACT_DEVELOPER && success.success_msg !== '' ?

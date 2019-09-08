@@ -8,7 +8,7 @@ export class About extends Component {
       <div>
         <NavBar active='about' />
 
-        <div className="card mt-5 ml-5 mr-5 border-0 about-card">
+        <div className="card mt-5 ml-5 mr-5 border-0 about-card" data-aos="fade-right" data-aos-duration="2000">
           <div className="row no-gutters">
             <div className="col-md-7 ml-auto mt-auto mb-auto" >
               <img src="/img/transactions.png" className="card-img" alt="daily-transactions" />
@@ -25,7 +25,7 @@ export class About extends Component {
           </div>
         </div>
 
-        <div className="card ml-5 mr-5 border-0 about-card" >
+        <div className="card ml-5 mr-5 border-0 about-card" data-aos="fade-left" data-aos-duration="2000">
           <div className="row no-gutters">
             <div className="col-md-7 ml-auto mt-auto mb-auto" >
               <img src="/img/bars-chart.png" className="card-img" alt="bars-chart" />
@@ -42,7 +42,7 @@ export class About extends Component {
           </div>
         </div>
 
-        <div className="card ml-5 mr-5 border-0 about-card" >
+        <div className="card ml-5 mr-5 border-0 about-card" data-aos="fade-right" data-aos-duration="2000" >
           <div className="row no-gutters">
             <div className="col-md-7 ml-auto mt-auto mb-auto" >
               <img src="/img/pie-chart.png" className="card-img" alt="pie-chart" />
@@ -60,7 +60,7 @@ export class About extends Component {
           </div>
         </div>
 
-        <div className="card ml-5 mr-5 mb-5 border-0 about-card" >
+        <div className="card ml-5 mr-5 mb-5 border-0 about-card" data-aos="fade-left" data-aos-duration="2000" >
           <div className="row no-gutters">
             <div className="col-md-7 ml-auto mt-auto mb-auto" >
               <img src="/img/line-chart.png" className="card-img" alt="bars-chart" />
